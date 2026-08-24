@@ -19,7 +19,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--cream);color:var(--deep);font:400 16px/1.6 var(--ui);
-  -webkit-font-smoothing:antialiased}
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:960px;margin:0 auto;padding:0 22px}
 
 /* ---------- header ---------- */
@@ -27,14 +27,16 @@ header.top{background:var(--green);color:#fff;padding:52px 0 40px;border-bottom:
 header.top .eyebrow{font:500 10px/1 var(--ui);letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
 header.top h1{font:400 clamp(34px,7vw,58px)/1.02 var(--dis);letter-spacing:.02em;margin:18px 0 0}
 header.top h1 em{font-style:normal;display:block}
-header.top .meta{margin-top:20px;font-size:13.5px;color:#B8C7C1;letter-spacing:.04em}
+header.top .meta{margin-top:20px;font-size:13.5px;color:#B8C7C1;letter-spacing:.04em;
+  overflow-wrap:anywhere}
 .arc{display:block;width:92px;height:auto;margin-bottom:6px;opacity:.95}
 
 /* ---------- kpis ---------- */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--hair);
   border:1px solid var(--hair);margin:-30px 0 0;box-shadow:0 12px 34px rgba(35,59,52,.10)}
-.kpi{background:var(--panel);padding:20px 18px 17px}
-.kpi-l{font:500 9.5px/1 var(--ui);letter-spacing:.2em;color:var(--dgold);text-transform:uppercase}
+.kpi{background:var(--panel);padding:20px 18px 17px;min-width:0}
+.kpi-l{font:500 9.5px/1.3 var(--ui);letter-spacing:.2em;color:var(--dgold);
+  text-transform:uppercase;overflow-wrap:anywhere}
 .kpi-v{font:400 32px/1.1 var(--dis);margin:11px 0 9px;letter-spacing:.01em}
 .kpi-f{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .kpi-p{font-size:11.5px;color:var(--gray)}
@@ -55,7 +57,7 @@ section.blk{margin:62px 0 0}
 .lede{color:var(--mid);font-size:14.5px;max-width:66ch;margin:14px 0 26px}
 
 /* ---------- charts ---------- */
-.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart{width:100%;height:auto;display:block;overflow:hidden}
 .chart .cl{font:500 12.5px var(--ui);fill:#0E1A16}
 .chart .vl{font:500 12px var(--ui);fill:#233B34}
 .chart .vp{font:400 11.5px var(--ui);fill:#8A867D}
@@ -63,11 +65,12 @@ section.blk{margin:62px 0 0}
 .chart .lg{font:500 11px var(--ui);fill:#3A5A50;letter-spacing:.03em}
 .chart .ax{font:500 10px var(--ui);fill:#8E7B4E;letter-spacing:.2em}
 .chart .sl{font:500 12px var(--ui);fill:#0E1A16}
+.chart .sv{font:500 12px var(--ui);fill:#3A5A50}
 .chart .snew{font:400 11px var(--ui);fill:#8E7B4E;font-style:italic}
 .chart .cap{font:400 11.5px var(--ui);fill:#8A867D;font-style:italic}
 .chart .shl{font:500 12.5px var(--ui);fill:#0E1A16}
 .chart .shv{font:400 12px var(--ui);fill:#8A867D}
-.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
 .scroller>*{min-width:620px}
 
 /* ---------- property tables ---------- */
@@ -78,7 +81,7 @@ section.blk{margin:62px 0 0}
 .prop-h p{font-size:12.5px;color:var(--gray);margin-top:3px}
 .prop-n{display:flex;align-items:center;gap:9px}
 .prop-v{font:400 21px/1 var(--dis)}
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
 table{width:100%;border-collapse:collapse;min-width:640px}
 th,td{text-align:right;padding:13px 14px;border-bottom:1px solid var(--hair);vertical-align:top}
 thead th{font:500 9.5px/1 var(--ui);letter-spacing:.14em;text-transform:uppercase;
@@ -120,9 +123,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer strong{color:#fff;font-weight:500}
 
 @media (max-width:760px){
-  .kpis{grid-template-columns:repeat(2,1fr);margin-top:-22px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:-22px}
+  .kpi{padding:15px 13px 13px}
+  .kpi-l{letter-spacing:.1em;font-size:9px}
+  .kpi-v{font-size:25px;margin:8px 0 8px}
+  .kpi-f{gap:6px}
+  .kpi-p{font-size:11px}
+  header.top{padding:40px 0 34px}
+  header.top .meta{font-size:12.5px;line-height:1.5}
+  header.top .eyebrow{letter-spacing:.2em;font-size:9.5px}
   section.blk{margin-top:46px}
+  .hd h2{font-size:22px}
+  .ask{padding:24px 22px}
   .ask p{font-size:17px}
+  ol.concl li{padding-left:42px}
+  .prop-h{padding:15px 16px}
 }
 @media print{
   header.top,footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -172,7 +187,7 @@ footer strong{color:#fff;font-weight:500}
     <div class="hd"><span class="n">01</span><h2>Where the money went</h2></div>
     <p class="lede">Quinta da Barroca went live on 17 August, so this is its first full week and it has no
       prior week to compare against. Everything else is measured against 10 to 16 August 2026.</p>
-    <div class="scroller"><svg viewBox="0 0 860 116" role="img" aria-label="Share of spend by property" class="chart"><rect x="0.0" y="8" width="382.1" height="30" rx="2" fill="#233B34"/><text x="10.0" y="63" class="shl">Quinta da Barroca</text><text x="10.0" y="82" class="shv">€163.60  ·  45%</text><rect x="384.1" y="8" width="434.9" height="30" rx="2" fill="#3A5A50"/><text x="394.1" y="63" class="shl">Village Aparthotel</text><text x="394.1" y="82" class="shv">€186.13  ·  51%</text><rect x="821.0" y="8" width="28.8" height="30" rx="2" fill="#B8A576"/><rect x="851.8" y="8" width="6.2" height="30" rx="2" fill="#8E7B4E"/></svg></div>
+    <div class="scroller"><svg viewBox="0 0 860 132" role="img" aria-label="Share of spend by property" class="chart"><rect x="0.0" y="8" width="382.1" height="30" rx="2" fill="#233B34"/><text x="10.0" y="63" class="shl">Quinta da Barroca</text><text x="10.0" y="82" class="shv">€163.60  ·  45%</text><rect x="384.1" y="8" width="434.9" height="30" rx="2" fill="#3A5A50"/><text x="394.1" y="63" class="shl">Village Aparthotel</text><text x="394.1" y="82" class="shv">€186.13  ·  51%</text><rect x="821.0" y="8" width="28.8" height="30" rx="2" fill="#B8A576"/><rect x="851.8" y="8" width="6.2" height="30" rx="2" fill="#8E7B4E"/><rect x="0.0" y="110" width="10" height="10" rx="2" fill="#B8A576"/><text x="16.0" y="119" class="shv">The Space  €13.13  ·  4%</text><rect x="250.0" y="110" width="10" height="10" rx="2" fill="#8E7B4E"/><text x="266.0" y="119" class="shv">BOA Hotels  €3.48  ·  1%</text></svg></div>
     <div class="scroller"><svg viewBox="0 0 860 346" role="img" aria-label="This week" class="chart"><g transform="translate(214,14)"><rect x="0" y="-8" width="11" height="11" rx="2" fill="#233B34"/><text x="17" y="1" class="lg">This week</text><rect x="150" y="-8" width="11" height="11" rx="2" fill="#DCD5C4"/><text x="167" y="1" class="lg">Prior week</text></g><text x="200" y="55" text-anchor="end" class="cl">BOA Hotels</text><line x1="214" y1="78" x2="768" y2="78" stroke="#DCD5C4" stroke-width="1" opacity=".55"/><rect x="214" y="38" width="16.3" height="15" rx="2" fill="#233B34"/><text x="238.3" y="50" class="vl">€3.48</text><rect x="214" y="58" width="11.8" height="15" rx="2" fill="#DCD5C4"/><text x="233.8" y="70" class="vp">€2.52</text><text x="200" y="107" text-anchor="end" class="cl">The Space by BOA</text><line x1="214" y1="130" x2="768" y2="130" stroke="#DCD5C4" stroke-width="1" opacity=".55"/><rect x="214" y="90" width="61.4" height="15" rx="2" fill="#233B34"/><text x="283.4" y="102" class="vl">€13.13</text><rect x="214" y="110" width="189.2" height="15" rx="2" fill="#DCD5C4"/><text x="411.2" y="122" class="vp">€40.48</text><text x="200" y="159" text-anchor="end" class="cl">Village Brand Search</text><line x1="214" y1="182" x2="768" y2="182" stroke="#DCD5C4" stroke-width="1" opacity=".55"/><rect x="214" y="142" width="434.1" height="15" rx="2" fill="#233B34"/><text x="656.1" y="154" class="vl">€92.89</text><rect x="214" y="162" width="307.3" height="15" rx="2" fill="#DCD5C4"/><text x="529.3" y="174" class="vp">€65.76</text><text x="200" y="211" text-anchor="end" class="cl">Village Unbranded Search</text><line x1="214" y1="234" x2="768" y2="234" stroke="#DCD5C4" stroke-width="1" opacity=".55"/><rect x="214" y="194" width="435.8" height="15" rx="2" fill="#233B34"/><text x="657.8" y="206" class="vl">€93.24</text><rect x="214" y="214" width="292.2" height="15" rx="2" fill="#DCD5C4"/><text x="514.2" y="226" class="vp">€62.51</text><text x="200" y="263" text-anchor="end" class="cl">Quinta da Barroca Brand</text><line x1="214" y1="286" x2="768" y2="286" stroke="#DCD5C4" stroke-width="1" opacity=".55"/><rect x="214" y="246" width="221.5" height="15" rx="2" fill="#233B34"/><text x="443.5" y="258" class="vl">€47.39</text><text x="214" y="278" class="vn">not live last week</text><text x="200" y="315" text-anchor="end" class="cl">Quinta da Barroca Unbranded</text><line x1="214" y1="338" x2="768" y2="338" stroke="#DCD5C4" stroke-width="1" opacity=".55"/><rect x="214" y="298" width="543.1" height="15" rx="2" fill="#233B34"/><text x="765.1" y="310" class="vl">€116.21</text><text x="214" y="330" class="vn">not live last week</text></svg></div>
   </section>
 
@@ -187,7 +202,7 @@ footer strong{color:#fff;font-weight:500}
     <div class="hd"><span class="n">03</span><h2>What each click cost</h2></div>
     <p class="lede">This is the chart worth two minutes. Village unbranded got cheaper. Village brand got
       substantially more expensive, and it bought fewer clicks while doing it.</p>
-    <div class="scroller"><svg viewBox="0 0 860 330" role="img" aria-label="Cost per click, prior week to this week" class="chart"><text x="300" y="26" text-anchor="middle" class="ax">PRIOR WEEK</text><text x="620" y="26" text-anchor="middle" class="ax">THIS WEEK</text><line x1="300" y1="40" x2="300" y2="284" stroke="#DCD5C4" stroke-width="1"/><line x1="620" y1="40" x2="620" y2="284" stroke="#DCD5C4" stroke-width="1"/><line x1="300" y1="110.2" x2="620" y2="92.7" stroke="#A8583F" stroke-width="2" opacity=".85"/><circle cx="300" cy="110.2" r="4" fill="#A8583F" opacity=".55"/><circle cx="620" cy="92.7" r="4.5" fill="#A8583F"/><text x="286" y="114.2" text-anchor="end" class="sl">BOA Hotels  €0.63</text><text x="634" y="96.7" class="sl">€0.70</text><line x1="300" y1="237.9" x2="620" y2="245.5" stroke="#3F7A5E" stroke-width="2" opacity=".85"/><circle cx="300" cy="237.9" r="4" fill="#3F7A5E" opacity=".55"/><circle cx="620" cy="245.5" r="4.5" fill="#3F7A5E"/><text x="286" y="241.9" text-anchor="end" class="sl">The Space by BOA  €0.12</text><text x="634" y="249.5" class="sl">€0.09</text><line x1="300" y1="152.8" x2="620" y2="75.1" stroke="#A8583F" stroke-width="2" opacity=".85"/><circle cx="300" cy="152.8" r="4" fill="#A8583F" opacity=".55"/><circle cx="620" cy="75.1" r="4.5" fill="#A8583F"/><text x="286" y="156.8" text-anchor="end" class="sl">Village Brand Search  €0.46</text><text x="634" y="79.1" class="sl">€0.77</text><line x1="300" y1="130.2" x2="620" y2="142.8" stroke="#3F7A5E" stroke-width="2" opacity=".85"/><circle cx="300" cy="130.2" r="4" fill="#3F7A5E" opacity=".55"/><circle cx="620" cy="142.8" r="4.5" fill="#3F7A5E"/><text x="286" y="134.2" text-anchor="end" class="sl">Village Unbranded Search  €0.55</text><text x="634" y="146.8" class="sl">€0.50</text><circle cx="620" cy="202.9" r="4.5" fill="#B8A576"/><text x="634" y="206.9" class="sl">Quinta da Barroca Brand  €0.26  <tspan class="snew">new</tspan></text><circle cx="620" cy="195.4" r="4.5" fill="#B8A576"/><text x="634" y="199.4" class="sl">Quinta da Barroca Unbranded  €0.29  <tspan class="snew">new</tspan></text><text x="300" y="308" text-anchor="middle" class="cap">Lines rising to the right cost more per click than last week</text></svg></div>
+    <div class="scroller"><svg viewBox="0 0 860 344" role="img" aria-label="Cost per click, prior week compared with this week" class="chart"><text x="292" y="28" text-anchor="middle" class="ax">PRIOR WEEK</text><text x="596" y="28" text-anchor="middle" class="ax">THIS WEEK</text><line x1="292" y1="42" x2="292" y2="286" stroke="#DCD5C4" stroke-width="1"/><line x1="596" y1="42" x2="596" y2="286" stroke="#DCD5C4" stroke-width="1"/><line x1="292" y1="110.3" x2="596" y2="92.8" stroke="#A8583F" stroke-width="2" opacity=".8"/><line x1="292" y1="238.0" x2="596" y2="245.5" stroke="#3F7A5E" stroke-width="2" opacity=".8"/><line x1="292" y1="152.9" x2="596" y2="75.3" stroke="#A8583F" stroke-width="2" opacity=".8"/><line x1="292" y1="130.3" x2="596" y2="142.9" stroke="#3F7A5E" stroke-width="2" opacity=".8"/><circle cx="292" cy="110.3" r="4" fill="#A8583F" opacity=".55"/><text x="278" y="114.3" text-anchor="end" class="sl">BOA Hotels <tspan class="sv">€0.63</tspan></text><circle cx="292" cy="238.0" r="4" fill="#3F7A5E" opacity=".55"/><text x="278" y="242.0" text-anchor="end" class="sl">The Space <tspan class="sv">€0.12</tspan></text><circle cx="292" cy="152.9" r="4" fill="#A8583F" opacity=".55"/><text x="278" y="156.9" text-anchor="end" class="sl">Village Brand <tspan class="sv">€0.46</tspan></text><circle cx="292" cy="130.3" r="4" fill="#3F7A5E" opacity=".55"/><text x="278" y="134.3" text-anchor="end" class="sl">Village Unbranded <tspan class="sv">€0.55</tspan></text><circle cx="596" cy="92.8" r="4.5" fill="#A8583F"/><text x="610" y="96.8" class="sl"><tspan class="sv">€0.70</tspan></text><circle cx="596" cy="245.5" r="4.5" fill="#3F7A5E"/><text x="610" y="249.5" class="sl"><tspan class="sv">€0.09</tspan></text><circle cx="596" cy="75.3" r="4.5" fill="#A8583F"/><text x="610" y="79.3" class="sl"><tspan class="sv">€0.77</tspan></text><circle cx="596" cy="142.9" r="4.5" fill="#3F7A5E"/><text x="610" y="146.9" class="sl"><tspan class="sv">€0.50</tspan></text><circle cx="596" cy="202.9" r="4.5" fill="#B8A576"/><text x="610" y="214.4" class="sl">Quinta Brand <tspan class="sv">€0.26</tspan> <tspan class="snew">new</tspan></text><circle cx="596" cy="195.4" r="4.5" fill="#B8A576"/><text x="610" y="199.4" class="sl">Quinta Unbranded <tspan class="sv">€0.29</tspan> <tspan class="snew">new</tspan></text><text x="292" y="320" text-anchor="middle" class="cap">A line rising to the right means that campaign paid more per click than it did last week</text></svg></div>
   </section>
 
   <section class="blk">
